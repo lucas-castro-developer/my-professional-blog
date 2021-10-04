@@ -19,6 +19,7 @@
     "react-helmet": "^6.1.0"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "prettier": "2.4.1"
   },
   "keywords": [
