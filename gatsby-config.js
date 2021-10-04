@@ -1,6 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `Meu blog profissional`,
+    position: `Desenvolvedor FrontEnd`,
     description: `Meu blog profissional para compartilhar experiências e ajudar pessoas.`,
     author: `@lucas-castro-developer`,
     siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
