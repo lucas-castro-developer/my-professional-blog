@@ -1,8 +1,7 @@
 const path = require("path")
-
 const { createFilePath } = require(`gatsby-source-filesystem`)
 
-//To add the slug filed to each post
+// To add the slug field to each post
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
   // Ensures we are processing only markdown files
@@ -23,33 +22,30 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
   }
 }
 
-exports.createPages = async ({ graphql, actions }) => {
-const { createPage } = actions
-
-// Query for markdown nodes to use in creating pages.
-
-return graphql(
-    `
-    allMarkdownRemark {
+// To create the posts pages
+exports.createPages = ({ graphql, actions }) => {
+  const { createPage } = actions
+  return graphql(`
+    {
+      allMarkdownRemark {
         edges {
-            node {
-              fields {
-                slug
-              }
+          node {
+            fields {
+              slug
             }
           }
         }
       }
-    `
-).then(result => {
+    }
+  `).then(result => {
     result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-        createPage({
-            path: node.fields.slug,
-            component: path.resolve("./src/templates/blog-post.js"),
-            context: {
-                slug: node.fields.slug
-            }
-        })
+      createPage({
+        path: node.fields.slug,
+        component: path.resolve(`./src/templates/blog-post.js`),
+        context: {
+          slug: node.fields.slug,
+        },
+      })
     })
-})
+  })
 }
